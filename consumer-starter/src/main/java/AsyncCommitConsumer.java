@@ -1,11 +1,10 @@
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.consumer.*;
+import org.apache.kafka.common.TopicPartition;
 
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Properties;
 
 @Slf4j
@@ -22,7 +21,22 @@ public class AsyncCommitConsumer {
             for (ConsumerRecord<String, String> record : records) {
                 log.info("record : {}", record);
             }
-            consumer.commitAsync();
+
+            // commitAsync()의 응답을 받을 수 있도록 도와주는 콜백 인터페이
+            consumer.commitAsync(new OffsetCommitCallback() {
+                // offsets : 커밋 완료된 오프셋 정보
+                @Override
+                public void onComplete(Map<TopicPartition, OffsetAndMetadata> offsets, Exception exception) {
+                    if(exception != null){
+                        System.err.println("Commit failed");
+                    }else{
+                        System.out.println("Commit succeeded");
+                    }
+                    if(exception != null){
+                        log.error("Commit failed for offsets : {}", offsets, exception);
+                    }
+                }
+            });
         }
     }
 }
