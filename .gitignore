@@ -1,11 +1,7 @@
 # Project exclude paths
-/producer-starter/.gradle/
-/producer-starter/out/
-/producer-starter/out/production/classes/
-
-# Project exclude paths
-/consumer-starter/.gradle/
-/consumer-starter/out/
-/consumer-starter/out/production/classes/
+*/.gradle/
+*/build/
+*/out/
+*/out/production/classes/
 
 .idea
