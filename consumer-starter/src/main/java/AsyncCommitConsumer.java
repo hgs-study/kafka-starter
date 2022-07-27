@@ -22,7 +22,7 @@ public class AsyncCommitConsumer {
             for (ConsumerRecord<String, String> record : records) {
                 log.info("record : {}", record);
             }
-            consumer.commitSync();
+            consumer.commitAsync();
         }
     }
 }
