@@ -33,6 +33,9 @@ public class SpringKafkaProducerApplication implements CommandLineRunner {
 //			template.send(TOPIC_NAME, "test" + i);
 //        }
 
+		//비동기로 브로커에 적재 여부 확인
+		// callback으로 확인 가능
+		// 성공 -> onSuccess , 실패 -> onFailure
 		ListenableFuture<SendResult<String, String>> future = customKafkaTemplate.send(TOPIC_NAME, "test");
 
 		future.addCallback(new KafkaSendCallback<String, String>(){
