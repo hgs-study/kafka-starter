@@ -4,6 +4,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/consumer-starter" />
     <file type="web" url="file://$PROJECT_DIR$/producer-starter" />
+    <file type="web" url="file://$PROJECT_DIR$/spring-batch-listener" />
     <file type="web" url="file://$PROJECT_DIR$/spring-kafka-producer" />
     <file type="web" url="file://$PROJECT_DIR$/spring-record-listener" />
   </component>
